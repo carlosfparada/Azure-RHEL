@@ -1,0 +1,53 @@
+---
+
+- name: Include vault quay.io credentials
+  ansible.builtin.include_vars: ../vaults/rh_subs-vault.yml
+
+- name: Attach Red Hat subscription
+  community.general.redhat_subscription:
+    state: present
+    username: rh-ee-cparada
+    password: "{{ subscription_pass }}"
+    pool_ids: "{{ rh_subs_pool_id }}"
+
+- name: Install Software
+  ansible.builtin.dnf:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - firewalld
+      - httpd
+      - php 
+      - php-common
+  become: yes
+
+- name: Open port TCP 80
+  ansible.posix.firewalld:
+    port: http/tcp
+    permanent: yes
+    state: enabled
+  become: true
+
+- name: Webpage template
+  ansible.builtin.template:
+    src: ../templates/webpage.html.j2
+    dest: /var/www/html/index.html
+    owner: apache
+    mode: "0644"
+  become: yes
+
+- name: Start firewalld
+  ansible.builtin.service:
+    name: firewalld
+    enabled: yes
+    state: restarted
+  become: true
+
+- name: Restart httpd server 
+  ansible.builtin.service: 
+    name: httpd
+    enabled: yes
+    state: restarted
+  become: yes
+ 

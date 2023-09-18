@@ -1,0 +1,100 @@
+---
+
+# https://learn.microsoft.com/en-us/azure/developer/ansible/vm-configure?tabs=ansible
+- name: Create Resource Group {{ rg_name }}
+  azure.azcollection.azure_rm_resourcegroup:
+    name: "{{ rg_name }}"
+    location: "{{ vnet_location }}"
+    state: present
+  register: rg
+
+- name: Create Vnet {{ vnet_name }}
+  azure.azcollection.azure_rm_virtualnetwork:
+    name: "{{ vnet_name }}"
+    resource_group: "{{ rg_name }}"
+    location: "{{ vnet_location }}"
+    address_prefix_cidr: "{{ vnet_cidr }}"
+    state: present
+  register: vnet
+
+- name: Create Subnet in VNet
+  azure.azcollection.azure_rm_subnet:
+    name: "{{ subnet_name }}"
+    resource_group: "{{ rg_name }}"
+    virtual_network: "{{ vnet_name }}"
+    location: "{{ vnet_location }}"
+    address_prefix_cidr: "{{ subnet_cidr }}"
+    state: present
+  register: subnet
+
+- name: Create Security Group
+  azure.azcollection.azure_rm_securitygroup:
+    name: "{{ sg_name }}"
+    rules:
+      - name: Allow all on ports
+        protocol: tcp
+        source_address_prefix: 0.0.0.0/0
+        destination_port_range: "{{ sg_openports }}"
+        access: Allow
+        direction: Inbound
+    region: "{{ ec2_vpc_region }}"
+    vpc_id: "{{ vpc.vpc.id }}"
+    state: present
+  register: sg
+
+- name: Create Public IP
+  azure.azcollection.azure_rm_publicipaddress:
+    name: "{{ public_ip }}"
+    resource_group: "{{ rg_name }}"
+    allocation_method: static
+    state: present
+  register: public_ip
+
+- name: Public IP of VM
+  debug:
+    msg: "The public IP is {{ public_ip.state.ip_address }}"
+
+- name: Create Network Interface
+  azure.azcollection.azure_rm_networkinterface:
+    name: "{{ instance_name }}"
+    resource_group: "{{ rg_name }}"
+    virtual_network_name: "{{ vnet_name }}"
+    subnet_name: "{{ subnet_name }}"
+    security_group: "{{ sg_name }}"
+    ip_configurations:
+      - name: eth0
+        public_ip_address_name: "{{ public_ip }}"
+        primary: True
+    state: present
+  register: interface
+
+- name: Create RHEL VM
+  azure.azcollection.azure_rm_virtualmachine:
+    name: "{{ instance_name }}"
+    resource_group: "{{ rg_name }}"
+    virtual_network_name: "{{ vnet_name }}"
+    subnet_name: "{{ subnet_name }}"
+    location: "{{ vnet_location }}"
+    vm_size: "{{ flavor_name }}"
+    admin_username: "{{ username }}"
+    admin_password: "{{ password }}"
+    network_interface_names: "{{ instance_name }}"
+    os_type: Linux
+    image:
+      offer: CentOS
+    started: true
+    state: present
+  register: vm
+
+# - name: Sleep for 60 seconds and continue with play
+#   wait_for:
+#     timeout: 60
+#   delegate_to: localhost
+
+  - name: Wait for port 22 to become open
+  wait_for:
+    host: "{{ public_ip.state.ip_address }}"
+    port: 22
+    timeout: 300
+    delay: 10
+  connection: local

@@ -1,0 +1,6 @@
+- name: AWS RHEL deployment roles
+  hosts: all
+  connection: local
+  gather_facts: no
+  roles:
+    - rhel_service_config

@@ -1,0 +1,31 @@
+# Resource Group
+rg_name: myRG
+rg_location: westeurope
+# VNet
+vnet_name: VPC1
+vnet_location: eu-central-1
+vnet_cidr: 10.0.0.0/16
+# Subnet
+subnet_name: Subnet1
+subnet_cidr: 10.0.0.0/24
+# Public IP
+public_ip: pip1
+# Interface card
+interface_name: interface1
+# RHEL Open ports
+sg_name: SG1
+sg_openports:
+  - 80
+  - 443
+  - 22
+# AMI
+image_name: RHEL-8.6.0_HVM-*x86_64*
+# Flavour 
+flavor_name: Standard_D4
+# Disk
+disk_size: 20
+ebs_name: /dev/sda1
+# Key Pair
+key_name: "KeyPair"
+# Instance
+instance_name: rhel-1
