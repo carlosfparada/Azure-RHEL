@@ -1,6 +1,6 @@
 ---
 # https://learn.microsoft.com/en-us/azure/developer/ansible/vm-configure?tabs=ansible
-- name: Delete RHEL VM
+- name: Delete RHEL VM {{ instance_name }}
   azure.azcollection.azure_rm_virtualmachine:
     name: "{{ instance_name }}"
     resource_group: "{{ rg_name }}"
@@ -8,14 +8,14 @@
     state: absent
   register: vm
 
-- name: Delete Network Interface
+- name: Delete Network Interface {{ interface_name }}
   azure.azcollection.azure_rm_networkinterface:
-    name: "{{ instance_name }}"
+    name: "{{ interface_name }}"
     resource_group: "{{ rg_name }}"
     state: absent
   register: interface
 
-- name: Delete Public IP
+- name: Delete Public IP {{ public_ip }}
   azure.azcollection.azure_rm_publicipaddress:
     name: "{{ public_ip }}"
     resource_group: "{{ rg_name }}"
@@ -23,14 +23,14 @@
   register: pip
   ignore_errors: true
 
-- name: Delete Security Group
+- name: Delete Security Group {{ sg_name }}
   azure.azcollection.azure_rm_securitygroup:
     name: "{{ sg_name }}"
     resource_group: "{{ rg_name }}"
     state: absent
   register: sg
 
-- name: Delete Subnet in VNet
+- name: Delete Subnet {{ subnet_name }}
   azure.azcollection.azure_rm_subnet:
     name: "{{ subnet_name }}"
     resource_group: "{{ rg_name }}"
