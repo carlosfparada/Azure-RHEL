@@ -50,7 +50,7 @@
     resource_group: "{{ rg_name }}"
     allocation_method: static
     state: present
-  register: public_ip
+  register: ip
 
 - name: Public IP of VM
   debug:
