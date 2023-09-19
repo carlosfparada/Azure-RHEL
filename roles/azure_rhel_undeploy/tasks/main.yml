@@ -21,6 +21,7 @@
     resource_group: "{{ rg_name }}"
     state: absent
   register: public_ip
+  ignore_errors: true
 
 - name: Delete Security Group
   azure.azcollection.azure_rm_securitygroup:
