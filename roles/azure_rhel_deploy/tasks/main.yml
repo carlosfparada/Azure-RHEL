@@ -77,8 +77,8 @@
     virtual_network_name: "{{ vnet_name }}"
     subnet_name: "{{ subnet_name }}"
     vm_size: "{{ flavor_name }}"
-    admin_username: "{{ admin_username }}"
-    admin_password: "{{ admin_password }}"
+    # admin_username: "{{ admin_username }}"
+    # admin_password: "{{ admin_password }}"
     network_interface_names: "{{ interface_name }}"
     os_type: Linux
     image:
