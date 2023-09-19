@@ -90,7 +90,6 @@
     #   version: latest
     started: true
     state: present
-
   register: vm
 
 - name: Wait for port 22 to become open
