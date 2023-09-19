@@ -33,7 +33,7 @@
   azure.azcollection.azure_rm_subnet:
     name: "{{ subnet_name }}"
     resource_group: "{{ rg_name }}"
-    #virtual_network_name: "{{ vnet_name }}"
+    virtual_network_name: "{{ vnet_name }}"
     state: absent
   register: subnet
 
