@@ -8,6 +8,13 @@
     state: absent
   register: vm
 
+- name: Delete Network Interface
+  azure.azcollection.azure_rm_networkinterface:
+    name: "{{ instance_name }}"
+    resource_group: "{{ rg_name }}"
+    state: absent
+  register: interface
+
 - name: Delete Public IP
   azure.azcollection.azure_rm_publicipaddress:
     name: "{{ public_ip }}"
@@ -22,13 +29,6 @@
     resource_group: "{{ rg_name }}"
     state: absent
   register: sg
-
-- name: Delete Network Interface
-  azure.azcollection.azure_rm_networkinterface:
-    name: "{{ instance_name }}"
-    resource_group: "{{ rg_name }}"
-    state: absent
-  register: interface
 
 - name: Delete Subnet in VNet
   azure.azcollection.azure_rm_subnet:
