@@ -1,5 +1,5 @@
 # Resource Group
-rg_name: myRG
+rg_name: openenv-kd7hg
 rg_location: westeurope
 # VNet
 vnet_name: VPC1
