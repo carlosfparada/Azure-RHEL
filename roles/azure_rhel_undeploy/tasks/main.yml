@@ -4,9 +4,7 @@
   azure.azcollection.azure_rm_virtualmachine:
     name: "{{ instance_name }}"
     resource_group: "{{ rg_name }}"
-    virtual_network_name: "{{ vnet_name }}"
-    subnet_name: "{{ subnet_name }}"
-    location: "{{ vnet_location }}"
+    remove_on_absent: all_autocreated
     state: ansent
   register: vm
 
