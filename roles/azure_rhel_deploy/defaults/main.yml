@@ -21,8 +21,8 @@ sg_openports:
 # AMI
 image_name: RHEL-8.6.0_HVM-*x86_64*
 # auth
-# admin_username: admin
-# admin_password: rhel
+admin_username: adminuser
+admin_password: rhelpass
 # Flavour 
 flavor_name: Standard_D2s_v3
 #flavor_name: D2s_v3
