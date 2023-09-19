@@ -20,6 +20,9 @@ sg_openports:
   - 22
 # AMI
 image_name: RHEL-8.6.0_HVM-*x86_64*
+# auth
+admin_username: "root"
+admin_password: "rhel"
 # Flavour 
 flavor_name: Standard_D4
 # Disk
