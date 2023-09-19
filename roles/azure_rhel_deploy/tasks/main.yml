@@ -39,8 +39,6 @@
         destination_port_range: "{{ sg_openports }}"
         access: Allow
         direction: Inbound
-    region: "{{ ec2_vpc_region }}"
-    vpc_id: "{{ vpc.vpc.id }}"
     state: present
   register: sg
 
