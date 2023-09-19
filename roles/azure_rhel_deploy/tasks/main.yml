@@ -85,7 +85,7 @@
       offer: RHEL
       # offer: CentOS
       publisher: RedHat
-      sku: 9
+      sku: 9-LVM
       version: latest
     started: true
     state: present
