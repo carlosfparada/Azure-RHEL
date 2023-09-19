@@ -24,7 +24,7 @@ image_name: RHEL-8.6.0_HVM-*x86_64*
 admin_username: "root"
 admin_password: "rhel"
 # Flavour 
-flavor_name: Standard_D4
+flavor_name: Standard_D1
 # Disk
 disk_size: 20
 ebs_name: /dev/sda1
