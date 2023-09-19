@@ -1,9 +1,9 @@
 # Resource Group
 rg_name: openenv-kd7hg
-#rg_location: westeurope
+#rg_location: 
 # VNet
 vnet_name: VNet1
-#vnet_location: eu-central-1
+#vnet_location: 
 vnet_cidr: 10.0.0.0/16
 # Subnet
 subnet_name: Subnet1

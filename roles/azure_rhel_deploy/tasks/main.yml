@@ -23,7 +23,7 @@
     name: "{{ subnet_name }}"
     resource_group: "{{ rg_name }}"
     virtual_network: "{{ vnet_name }}"
-    location: "{{ vnet_location }}"
+    #location: "{{ vnet_location }}"
     address_prefix_cidr: "{{ subnet_cidr }}"
     state: present
   register: subnet
