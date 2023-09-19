@@ -13,7 +13,7 @@
     name: "{{ public_ip }}"
     resource_group: "{{ rg_name }}"
     state: absent
-  register: public_ip
+  register: pip
   ignore_errors: true
 
 - name: Delete Security Group
