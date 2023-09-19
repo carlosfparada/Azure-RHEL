@@ -30,6 +30,7 @@
 - name: Create Security Group
   azure.azcollection.azure_rm_securitygroup:
     name: "{{ sg_name }}"
+    resource_group: "{{ rg_name }}"
     rules:
       - name: Allow all on ports
         protocol: tcp

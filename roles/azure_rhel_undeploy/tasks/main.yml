@@ -12,9 +12,6 @@
   azure.azcollection.azure_rm_networkinterface:
     name: "{{ instance_name }}"
     resource_group: "{{ rg_name }}"
-    virtual_network_name: "{{ vnet_name }}"
-    subnet_name: "{{ subnet_name }}"
-    security_group: "{{ sg_name }}"
     state: absent
   register: interface
 
@@ -28,8 +25,7 @@
 - name: Delete Security Group
   azure.azcollection.azure_rm_securitygroup:
     name: "{{ sg_name }}"
-    region: "{{ ec2_vpc_region }}"
-    vpc_id: "{{ vpc.vpc.id }}"
+    resource_group: "{{ rg_name }}"
     state: absent
   register: sg
 
@@ -37,7 +33,7 @@
   azure.azcollection.azure_rm_subnet:
     name: "{{ subnet_name }}"
     resource_group: "{{ rg_name }}"
-    virtual_network: "{{ vnet_name }}"
+    #virtual_network_name: "{{ vnet_name }}"
     state: absent
   register: subnet
 
@@ -45,7 +41,6 @@
   azure.azcollection.azure_rm_virtualnetwork:
     name: "{{ vnet_name }}"
     resource_group: "{{ rg_name }}"
-    location: "{{ vnet_location }}"
     state: absent
   register: vnet
 
