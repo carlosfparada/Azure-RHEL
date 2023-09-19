@@ -4,7 +4,7 @@
   azure.azcollection.azure_rm_virtualmachine:
     name: "{{ instance_name }}"
     resource_group: "{{ rg_name }}"
-    remove_on_absent: all_autocreated
+    remove_on_absent: all
     state: absent
   register: vm
 
