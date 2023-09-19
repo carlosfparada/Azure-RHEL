@@ -5,7 +5,7 @@
     name: "{{ instance_name }}"
     resource_group: "{{ rg_name }}"
     remove_on_absent: all_autocreated
-    state: ansent
+    state: absent
   register: vm
 
 - name: Delete Network Interface
