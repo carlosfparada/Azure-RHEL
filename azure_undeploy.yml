@@ -1,7 +1,7 @@
-- name: AWS RHEL deployment roles
+- name: Azure RHEL deployment roles
   hosts: localhost
   connection: local
   gather_facts: no
   roles:
-    - aws_rhel_undeploy
+    - azure_rhel_undeploy
   

@@ -1,4 +1,4 @@
-- name: AWS RHEL deployment roles
+- name: Azure RHEL Service Config roles
   hosts: all
   connection: local
   gather_facts: no
