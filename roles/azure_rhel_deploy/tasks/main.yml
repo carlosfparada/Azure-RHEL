@@ -19,7 +19,7 @@
     state: present
   register: vnet
 
-- name: Create Subnet in VNet
+- name: Create Subnet {{ subnet_name }}
   azure.azcollection.azure_rm_subnet:
     name: "{{ subnet_name }}"
     resource_group: "{{ rg_name }}"
@@ -29,7 +29,7 @@
     state: present
   register: subnet
 
-- name: Create Security Group
+- name: Create Security Group {{ sg_name }}
   azure.azcollection.azure_rm_securitygroup:
     name: "{{ sg_name }}"
     resource_group: "{{ rg_name }}"
@@ -44,7 +44,7 @@
     state: present
   register: sg
 
-- name: Create Public IP
+- name: Create Public IP {{ public_ip }}
   azure.azcollection.azure_rm_publicipaddress:
     name: "{{ public_ip }}"
     resource_group: "{{ rg_name }}"
@@ -54,7 +54,7 @@
 
 - name: Public IP of VM
   debug:
-    msg: "The public IP is {{ public_ip.state.ip_address }}"
+    msg: "The public IP is {{ pip.state.ip_address }}"
 
 - name: Create Network Interface
   azure.azcollection.azure_rm_networkinterface:
