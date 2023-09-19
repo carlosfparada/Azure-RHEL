@@ -34,7 +34,7 @@
     name: "{{ sg_name }}"
     resource_group: "{{ rg_name }}"
     rules:
-      - name: "Allow all on ports"
+      - name: AllowOpenPorts"
         priority: 100
         protocol: Tcp
         source_address_prefix: 0.0.0.0/0
