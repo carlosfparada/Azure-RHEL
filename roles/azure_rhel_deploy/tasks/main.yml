@@ -48,7 +48,7 @@
   azure.azcollection.azure_rm_publicipaddress:
     name: "{{ public_ip }}"
     resource_group: "{{ rg_name }}"
-    allocation_method: static
+    allocation_method: dynamic
     state: present
   register: pip
 
