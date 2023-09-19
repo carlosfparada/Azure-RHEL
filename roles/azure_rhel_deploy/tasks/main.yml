@@ -93,10 +93,10 @@
 #     timeout: 60
 #   delegate_to: localhost
 
-  - name: Wait for port 22 to become open
-    wait_for:
-      host: "{{ public_ip.state.ip_address }}"
-      port: 22
-      timeout: 300
-      delay: 10
-    connection: local
+- name: Wait for port 22 to become open
+  wait_for:
+    host: "{{ public_ip.state.ip_address }}"
+    port: 22
+    timeout: 300
+    delay: 10
+  connection: local
