@@ -16,9 +16,6 @@
     #location: "{{ vnet_location }}"
     address_prefixes_cidr: "{{ vnet_cidr }}"
     state: present
-  become_user: root
-  become: true
-  become_method: sudo
   register: vnet
 
 - name: Create Subnet in VNet
