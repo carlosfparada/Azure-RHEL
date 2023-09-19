@@ -64,7 +64,7 @@
     subnet_name: "{{ subnet_name }}"
     security_group: "{{ sg_name }}"
     ip_configurations:
-      - name: eth0
+      - name: eth
         public_ip_address_name: "{{ public_ip }}"
         primary: True
     state: present
