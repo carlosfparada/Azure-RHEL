@@ -13,7 +13,7 @@
   azure.azcollection.azure_rm_virtualnetwork:
     name: "{{ vnet_name }}"
     resource_group: "{{ rg_name }}"
-    location: "{{ vnet_location }}"
+    #location: "{{ vnet_location }}"
     address_prefixes_cidr: "{{ vnet_cidr }}"
     state: present
   register: vnet
