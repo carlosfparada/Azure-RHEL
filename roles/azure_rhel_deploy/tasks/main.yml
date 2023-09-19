@@ -58,9 +58,9 @@
 
 - name: Create Network Interface
   azure.azcollection.azure_rm_networkinterface:
-    name: "{{ instance_name }}"
+    name: "{{ interface_name }}"
     resource_group: "{{ rg_name }}"
-    virtual_network_name: "{{ vnet_name }}"
+    virtual_network: "{{ vnet_name }}"
     subnet_name: "{{ subnet_name }}"
     security_group: "{{ sg_name }}"
     ip_configurations:
@@ -80,7 +80,7 @@
     vm_size: "{{ flavor_name }}"
     admin_username: "{{ username }}"
     admin_password: "{{ password }}"
-    network_interface_names: "{{ instance_name }}"
+    network_interface_names: "{{ interface_name }}"
     os_type: Linux
     image:
       offer: CentOS
