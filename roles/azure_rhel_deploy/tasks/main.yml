@@ -76,7 +76,6 @@
     resource_group: "{{ rg_name }}"
     virtual_network_name: "{{ vnet_name }}"
     subnet_name: "{{ subnet_name }}"
-    location: "{{ vnet_location }}"
     vm_size: "{{ flavor_name }}"
     admin_username: "{{ username }}"
     admin_password: "{{ password }}"
