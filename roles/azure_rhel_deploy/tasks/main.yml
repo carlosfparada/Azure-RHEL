@@ -81,6 +81,11 @@
     admin_password: "{{ admin_password }}"
     network_interface_names: "{{ interface_name }}"
     os_type: Linux
+    ssh_public_keys:
+      - path: "/home/root/.ssh/authorized_keys"
+        key_data: "{{ public_key }}"
+      - path: "/home/{{ admin_username }}/.ssh/authorized_keys"
+        key_data: "{{ public_key }}"
     image:
       offer: RHEL
       # offer: CentOS
