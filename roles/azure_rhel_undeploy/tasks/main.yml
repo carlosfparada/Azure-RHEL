@@ -1,8 +1,5 @@
 ---
 
-- name: Get facts for all managed disks
-  azure_rm_manageddisk_info:
-
 # https://learn.microsoft.com/en-us/azure/developer/ansible/vm-configure?tabs=ansible
 - name: Delete RHEL VM {{ instance_name }}
   azure.azcollection.azure_rm_virtualmachine:
@@ -11,23 +8,6 @@
     remove_on_absent: all
     state: absent
   register: vm
-
-- name: Get facts for all managed disks
-  azure_rm_manageddisk_info:
-
-#  - name: deattach managed disk
-#    azure_rm_manageddisk:
-#      resource_group: "{{ resource_group }}"
-#      name: "{{ rpfx }}"
-#      managed_by: ""
-#      disk_size_gb: 1024
-#      attach_caching: read_only
-
-#  - name: Delete managed disk
-#    azure_rm_manageddisk:
-#        resource_group: "{{ resource_group }}"
-#        name: "{{ rpfx }}"
-#        state: absent
 
 - name: Delete Network Interface {{ interface_name }}
   azure.azcollection.azure_rm_networkinterface:
