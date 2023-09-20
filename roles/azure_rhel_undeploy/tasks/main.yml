@@ -9,10 +9,6 @@
     state: absent
   register: vm
 
-- name: Get facts for all storage accounts
-  azure_rm_storageaccount_info:
-    resource_group: "{{ rg_name }}"
-
 - name: Delete Network Interface {{ interface_name }}
   azure.azcollection.azure_rm_networkinterface:
     name: "{{ interface_name }}"
