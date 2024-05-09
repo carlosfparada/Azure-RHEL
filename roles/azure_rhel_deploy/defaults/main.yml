@@ -1,3 +1,11 @@
+#
+# Using blank env
+# change the rg_name var
+# On AAP Azure Credential change (form demo-redhat.com Advanced settings)
+# # Subscription ID (azure_subscription)
+# # Client ID (azure_service_principal_id)
+# # Client Secret (azure_service_principal_password)
+
 # Resource Group
 rg_name: openenv-2f4sp
 #rg_location: 
