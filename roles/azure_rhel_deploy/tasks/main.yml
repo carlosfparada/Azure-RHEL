@@ -3,12 +3,12 @@
 # User RHPDS AAP Open Environment
 # https://learn.microsoft.com/en-us/azure/developer/ansible/vm-configure?tabs=ansible
 
-# - name: Create Resource Group {{ rg_name }}
-#   azure.azcollection.azure_rm_resourcegroup:
-#     name: "{{ rg_name }}"
-#     location: "{{ vnet_location }}"
-#     state: present
-#   register: rg
+- name: Create Resource Group {{ rg_name }}
+  azure.azcollection.azure_rm_resourcegroup:
+    name: "{{ rg_name }}"
+    location: "{{ vnet_location }}"
+    state: present
+  register: rg
 
 - name: Create Vnet {{ vnet_name }}
   azure.azcollection.azure_rm_virtualnetwork:
