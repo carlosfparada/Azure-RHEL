@@ -48,9 +48,9 @@
     state: absent
   register: vnet
 
-# - name: Delete Resource Group {{ rg_name }} and all inner resources
-#   azure.azcollection.azure_rm_resourcegroup:
-#     name: "{{ rg_name }}"
-#     force_delete_nonempty: yes
-#     state: absent
-#   register: rg
+- name: Delete Resource Group {{ rg_name }} and all inner resources
+  azure.azcollection.azure_rm_resourcegroup:
+    name: "{{ rg_name }}"
+    force_delete_nonempty: yes
+    state: absent
+  register: rg
