@@ -12,7 +12,7 @@ rg_name: cparada-rhel
 #rg_location: 
 # VNet
 vnet_name: VNet1
-#vnet_location: 
+vnet_location: eastus
 vnet_cidr: 10.0.0.0/16
 # Subnet
 subnet_name: Subnet1

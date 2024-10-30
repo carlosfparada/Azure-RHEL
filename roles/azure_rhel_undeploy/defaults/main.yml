@@ -8,7 +8,7 @@
 #
 
 # Resource Group
-rg_name: openenv-2f4sp
+rg_name: rg_name: cparada-rhel
 #rg_location: 
 # VNet
 vnet_name: VNet1
