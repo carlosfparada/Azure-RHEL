@@ -51,17 +51,6 @@ interface:
     pip: pip1
 
 # VMs
-
-    name: "{{ instance_name }}"
-    resource_group: "{{ rg_name }}"
-    virtual_network_name: "{{ vnet_name }}"
-    subnet_name: "{{ subnet_name }}"
-    vm_size: "{{ flavor_name }}"
-    admin_username: "{{ admin_username }}"
-    admin_password: "{{ admin_password }}"
-    network_interface_names: "{{ interface_name }}"
-    os_type: Linux
-
 vm: 
   # VM1
   - name: rhel-1
@@ -69,7 +58,7 @@ vm:
     vnet: VNet1
     subnet: Subnet1
     sg: SG1
-    pip: pip1
+    interface: interface1
     # AMI
     os_type: Linux
     #image_name: RHEL-8.6.0_HVM-*x86_64*
