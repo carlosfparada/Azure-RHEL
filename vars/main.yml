@@ -65,7 +65,7 @@ vm:
     image:
       offer: RHEL
       publisher: RedHat
-      sku: "9.4-LVM"
+      sku: "9_4-LVM"
       version: latest
     # image:      
     #   offer: CentOS
