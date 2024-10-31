@@ -3,103 +3,104 @@
 # User RHPDS AAP Open Environment
 # https://learn.microsoft.com/en-us/azure/developer/ansible/vm-configure?tabs=ansible
 
-- name: Create Resource Group {{ rg_name }}
+- name: Create Resource Group {{ item.name }}
   azure.azcollection.azure_rm_resourcegroup:
-    name: "{{ rg_name }}"
-    location: "{{ vnet_location }}"
+    name: "{{ item.name }}"
+    location: "{{ item.location }}"
     state: present
-  register: rg
+  loop: "{{ rg }}"
+  #register: rg
 
-- name: Create Vnet {{ vnet_name }}
+- name: Create Vnet {{ item.name }}
   azure.azcollection.azure_rm_virtualnetwork:
-    name: "{{ vnet_name }}"
-    resource_group: "{{ rg_name }}"
-    #location: "{{ vnet_location }}"
-    address_prefixes_cidr: "{{ vnet_cidr }}"
+    name: "{{ item.name }}"
+    resource_group: "{{ item.rg }}"
+    #location: "{{ vnet.location }}"
+    address_prefixes_cidr: "{{ item.cidr }}"
     state: present
-  register: vnet
+  loop: "{{ vnet }}"
+  #register: vnet
 
-- name: Create Subnet {{ subnet_name }}
+- name: Create Subnet {{ item.name }}
   azure.azcollection.azure_rm_subnet:
-    name: "{{ subnet_name }}"
-    resource_group: "{{ rg_name }}"
-    virtual_network: "{{ vnet_name }}"
-    #location: "{{ vnet_location }}"
-    address_prefix_cidr: "{{ subnet_cidr }}"
+    name: "{{ item.name }}"
+    resource_group: "{{ item.rg }}"
+    virtual_network: "{{ item.vnet }}"
+    #location: "{{ item.location }}"
+    address_prefix_cidr: "{{ item.cidr }}"
     state: present
-  register: subnet
+  loop: "{{ subnet }}"
+  #register: subnet
 
-- name: Create Security Group {{ sg_name }}
+- name: Create Security Group {{ item.name }}
   azure.azcollection.azure_rm_securitygroup:
-    name: "{{ sg_name }}"
-    resource_group: "{{ rg_name }}"
+    name: "{{ item.name }}"
+    resource_group: "{{ item.rg }}"
     rules:
       - name: AllowOpenPorts
         priority: 100
         protocol: Tcp
         source_address_prefix: 0.0.0.0/0
-        destination_port_range: "{{ sg_openports }}"
+        destination_port_range: "{{ item.openports }}"
         access: Allow
         direction: Inbound
     state: present
-  register: sg
+  loop: "{{ sg }}"
+  #register: sg
 
-- name: Create Public IP {{ public_ip }}
+- name: Create Public IP {{ item.name }}
   azure.azcollection.azure_rm_publicipaddress:
-    name: "{{ public_ip }}"
-    resource_group: "{{ rg_name }}"
-    allocation_method: static
+    name: "{{ item.name }}"
+    resource_group: "{{ item.rg }}"
+    allocation_method: "{{ item.method }}"
     state: present
-  register: pip
+  loop: "{{ pip }}"
+  #register: pip
 
-- name: Public IP of VM
-  debug:
-    msg: "The public IP is {{ pip.state.ip_address }}"
+# - name: Public IP of VM
+#   debug:
+#     msg: "The public IP is {{ pip.state.ip_address }}"
 
-- name: Create Network Interface
+- name: Create Network Interface {{ item.name }}
   azure.azcollection.azure_rm_networkinterface:
-    name: "{{ interface_name }}"
-    resource_group: "{{ rg_name }}"
-    virtual_network: "{{ vnet_name }}"
-    subnet_name: "{{ subnet_name }}"
-    security_group: "{{ sg_name }}"
+    name: "{{ item.name }}"
+    resource_group: "{{ item.rg }}"
+    virtual_network: "{{ item.vnet }}"
+    subnet_name: "{{ item.subnet }}"
+    security_group: "{{ item.sg }}"
     ip_configurations:
       - name: eth
-        public_ip_address_name: "{{ public_ip }}"
+        public_ip_address_name: "{{ item.pip }}"
         primary: True
     state: present
-  register: interface
+  loop: "{{ interface }}"
+  #register: interface
 
-- name: Create RHEL VM
+- name: Create RHEL VM {{ item.name }}
   azure.azcollection.azure_rm_virtualmachine:
-    name: "{{ instance_name }}"
-    resource_group: "{{ rg_name }}"
-    virtual_network_name: "{{ vnet_name }}"
-    subnet_name: "{{ subnet_name }}"
-    vm_size: "{{ flavor_name }}"
-    admin_username: "{{ admin_username }}"
-    admin_password: "{{ admin_password }}"
-    network_interface_names: "{{ interface_name }}"
-    os_type: Linux
+    name: "{{ item.name }}"
+    resource_group: "{{ item.rg }}"
+    virtual_network_name: "{{ item.vnet }}"
+    subnet_name: "{{ item.subnet }}"
+    vm_size: "{{ item.flavor }}"
+    admin_username: "{{ item.admin_username }}"
+    admin_password: "{{ item.admin_password }}"
+    network_interface_names: "{{ item.interface }}"
+    os_type: "{{ item.os_type }}"
     ssh_public_keys:
-      # - path: "/home/root/.ssh/authorized_keys"
-      #   key_data: "{{ public_key }}"
       - path: "/home/{{ admin_username }}/.ssh/authorized_keys"
         key_data: "{{ public_key }}"
-    image:
-      offer: RHEL
-      # offer: CentOS
-      publisher: RedHat
-      sku: 9-LVM
-      version: latest
-    started: true
+    image: "{{ item.image }}"
+    started: "{{ item.started }}"
     state: present
-  register: vm
+  loop: "{{ vm }}"
+  #register: vm
 
 - name: Wait for port 22 to become open
+  connection: local
   wait_for:
-    host: "{{ pip.state.ip_address }}"
+    host: "{{ item.state.ip_address }}"
     port: 22
     timeout: 300
     delay: 10
-  connection: local
+  loop: "{{ pip }}"
