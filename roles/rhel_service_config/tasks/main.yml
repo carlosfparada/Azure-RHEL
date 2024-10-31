@@ -13,7 +13,7 @@
 #     pool_ids: "{{ rh_subs_pool_id }}"
 
 - name: Install Software
-  ansible.builtin.dnf:
+  ansible.builtin.yum:
     name: "{{ packages }}"
     state: present
   become: yes
