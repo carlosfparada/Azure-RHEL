@@ -65,7 +65,7 @@ vm:
     image:
       offer: RHEL
       publisher: RedHat
-      sku: 8-LVM
+      sku: 9-LVM
       version: latest
     # auth
     admin_username: azureuser

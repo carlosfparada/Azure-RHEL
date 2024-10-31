@@ -16,6 +16,7 @@
     username: rh-ee-cparada
     password: "{{ subscription_pass }}"
     pool_ids: "{{ rh_subs_pool_id }}"
+    release: 9.4
 
 - name: Install Software
   ansible.builtin.dnf:
