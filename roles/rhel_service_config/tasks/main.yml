@@ -8,6 +8,11 @@
   register: ans
   become: true
 
+- name: Return motd to registered var
+  ansible.builtin.shell: "cat /tmp/a"
+  register: ans
+  become: true
+
 - name: Attach Red Hat subscription
   community.general.redhat_subscription:
     state: present
