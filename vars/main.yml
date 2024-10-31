@@ -79,3 +79,6 @@ vm:
     public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC9LqgKTJihvCryi03L+tQ3FAOZMWaC2g8irZOnoRtOUVd/Yg3zzpZNJeyfgnlHOFL1YAETu5stjy3ZXi3r+CnoP7edKTRUQz4Jm8eU6wtrEdWGvEYbvI+4534uUYenN7pWUVd/s2Pc77yEy5ydtIyq1kAyvn1tLF8L23PvBNDAwRl8dhscnon5WaAxJ6uzT3/9XvRUbWrAyprTpAz5PXKjXtqdhgIJtegs43UdRTL/WglO/IG8ImkOZVxjlkzHGJdGtnEcBtFVXaybGcau0kOwTyamqo2rywBjX+nuc2D/vLdKQeXVqbzPMdq2xwih5mG+5JpCqi8x/7rYQ1zSoTo5OoF6qPx2FAXQ+624JPvL+AnVYFzp+jbrId4wyxdyzAFmJa0z9Em7y9DTOU2RAmis2K3r2AsYmAk+a31H7PxpuK0l9gmxXb6q1IRHNfhX8fD3BQbXuVl0WC6x0TSnb9aOPJKNXggHOGoJIDw/Qo336Alc4VLmC6yOmlRTiE4o3eM= cparada@cparada-mac"
     # start
     started: true
+
+# rhel
+rh_subs_pool_id: 8a85f99c7d76f2fd017d96c343f40655

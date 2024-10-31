@@ -8,37 +8,74 @@
 #
 
 # Resource Group
-rg_name: cparada-rhel
-#rg_location: 
+rg:
+  - name: cparada-rhel
+    location: eastus
+
 # VNet
-vnet_name: VNet1
-vnet_location: eastus
-vnet_cidr: 10.0.0.0/16
+vnet:
+  - name: VNet1
+    rg: cparada-rhel
+    location: eastus
+    cidr: 10.0.0.0/16
+
 # Subnet
-subnet_name: Subnet1
-subnet_cidr: 10.0.0.0/24
-# Public IP
-public_ip: pip1
-# Interface card
-interface_name: interface1
+subnet:
+  - name: Subnet1
+    rg: cparada-rhel
+    vnet: VNet1
+    cidr: 10.0.0.0/24
+
 # RHEL Open ports
-sg_name: SG1
-sg_openports:
-  - 80
-  - 443
-  - 22
-# AMI
-image_name: RHEL-8.6.0_HVM-*x86_64*
-# auth
-admin_username: adminuser
-admin_password: rhelpass
-# Flavour 
-flavor_name: Standard_D2s_v3
-#flavor_name: D2s_v3
-# Disk
-disk_size: 20
-ebs_name: /dev/sda1
-# Key Pair
-key_name: "KeyPair"
-# Instance
-instance_name: rhel-1
+sg:
+  - name: SG1
+    rg: cparada-rhel
+    openports:
+      - 80
+      - 443
+      - 22
+
+# Public IP
+pip:
+  - name: pip1
+    rg: cparada-rhel
+    method: static
+
+# Interface card
+interface:
+  - name: interface1
+    rg: cparada-rhel
+    vnet: VNet1
+    subnet: Subnet1
+    sg: SG1
+    pip: pip1
+
+# VMs
+vm: 
+  # VM1
+  - name: rhel-1
+    rg: cparada-rhel
+    vnet: VNet1
+    subnet: Subnet1
+    sg: SG1
+    interface: interface1
+    # AMI
+    os_type: Linux
+    #image_name: RHEL-8.6.0_HVM-*x86_64*
+    image:
+      offer: RHEL
+      publisher: RedHat
+      sku: 9-LVM
+      version: latest
+    # auth
+    admin_username: adminuser
+    admin_password: RHELpass_123
+    # Flavour 
+    flavor: Standard_D2s_v3
+    # Disk
+    # disk_size: 20
+    # ebs_name: /dev/sda1
+    # Key Pair
+    public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC9LqgKTJihvCryi03L+tQ3FAOZMWaC2g8irZOnoRtOUVd/Yg3zzpZNJeyfgnlHOFL1YAETu5stjy3ZXi3r+CnoP7edKTRUQz4Jm8eU6wtrEdWGvEYbvI+4534uUYenN7pWUVd/s2Pc77yEy5ydtIyq1kAyvn1tLF8L23PvBNDAwRl8dhscnon5WaAxJ6uzT3/9XvRUbWrAyprTpAz5PXKjXtqdhgIJtegs43UdRTL/WglO/IG8ImkOZVxjlkzHGJdGtnEcBtFVXaybGcau0kOwTyamqo2rywBjX+nuc2D/vLdKQeXVqbzPMdq2xwih5mG+5JpCqi8x/7rYQ1zSoTo5OoF6qPx2FAXQ+624JPvL+AnVYFzp+jbrId4wyxdyzAFmJa0z9Em7y9DTOU2RAmis2K3r2AsYmAk+a31H7PxpuK0l9gmxXb6q1IRHNfhX8fD3BQbXuVl0WC6x0TSnb9aOPJKNXggHOGoJIDw/Qo336Alc4VLmC6yOmlRTiE4o3eM= cparada@cparada-mac"
+    # start
+    started: true

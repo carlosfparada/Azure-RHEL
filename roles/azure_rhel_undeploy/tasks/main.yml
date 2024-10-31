@@ -1,56 +1,62 @@
 ---
 
 # https://learn.microsoft.com/en-us/azure/developer/ansible/vm-configure?tabs=ansible
-- name: Delete RHEL VM {{ instance_name }}
+- name: Delete RHEL VM {{ vm }}
   azure.azcollection.azure_rm_virtualmachine:
-    name: "{{ instance_name }}"
-    resource_group: "{{ rg_name }}"
+    name: "{{ item.name }}"
+    resource_group: "{{ item.rg }}"
     remove_on_absent: all
     state: absent
-  register: vm
+  loop: "{{ vm }}"
+  #register: vm
 
-- name: Delete Network Interface {{ interface_name }}
+- name: Delete Network Interface {{ interface }}
   azure.azcollection.azure_rm_networkinterface:
-    name: "{{ interface_name }}"
-    resource_group: "{{ rg_name }}"
+    name: "{{ item.name }}"
+    resource_group: "{{ item.rg }}"
     state: absent
   register: interface
   until: "interface is not failed"
   retries: 4
   delay: 60
+  loop: "{{ interface }}"
 
-- name: Delete Public IP {{ public_ip }}
+- name: Delete Public IP {{ pip }}
   azure.azcollection.azure_rm_publicipaddress:
-    name: "{{ public_ip }}"
-    resource_group: "{{ rg_name }}"
+    name: "{{ pip.name }}"
+    resource_group: "{{ pip.rg }}"
     state: absent
-  register: pip
+  loop: "{{ pip }}"
 
-- name: Delete Security Group {{ sg_name }}
+- name: Delete Security Group {{ sg }}
   azure.azcollection.azure_rm_securitygroup:
-    name: "{{ sg_name }}"
-    resource_group: "{{ rg_name }}"
+    name: "{{ item.name }}"
+    resource_group: "{{ item.rg }}"
     state: absent
-  register: sg
+  loop: "{{ sg }}"
+  #register: sg
 
-- name: Delete Subnet {{ subnet_name }}
+- name: Delete Subnet {{ subnet }}
   azure.azcollection.azure_rm_subnet:
-    name: "{{ subnet_name }}"
-    resource_group: "{{ rg_name }}"
-    virtual_network_name: "{{ vnet_name }}"
+    name: "{{ item.name }}"
+    resource_group: "{{ item.rg }}"
+    virtual_network_name: "{{ item.vnet }}"
     state: absent
-  register: subnet
+  loop: "{{ subnet }}"
+  #register: subnet
 
-- name: Delete Vnet {{ vnet_name }}
+- name: Delete Vnet {{ vnet }}
   azure.azcollection.azure_rm_virtualnetwork:
-    name: "{{ vnet_name }}"
-    resource_group: "{{ rg_name }}"
+    name: "{{ item.name }}"
+    resource_group: "{{ item.rg }}"
     state: absent
-  register: vnet
+  loop: "{{ vnet }}"
+  #register: vnet
 
-- name: Delete Resource Group {{ rg_name }} and all inner resources
+- name: Delete Resource Group {{ rg }} and all inner resources
   azure.azcollection.azure_rm_resourcegroup:
-    name: "{{ rg_name }}"
+    name: "{{ item.rg }}"
     force_delete_nonempty: yes
     state: absent
-  register: rg
+  loop: "{{ rg }}"
+  #register: rg
