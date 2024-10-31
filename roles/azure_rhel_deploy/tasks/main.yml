@@ -106,4 +106,4 @@
     port: 22
     timeout: 300
     delay: 10
-  loop: "{{ pip_out }}"
+  loop: "{{ pip_out.results }}"
