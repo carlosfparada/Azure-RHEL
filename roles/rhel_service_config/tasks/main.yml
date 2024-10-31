@@ -3,7 +3,7 @@
 - name: Include vault quay.io credentials
   ansible.builtin.include_vars: ../vaults/rh_subs-vault.yml
 
-- name: Attach Red Hat subscription
+- name: Attach Red Hat subscriptionaa
   community.general.redhat_subscription:
     state: present
     username: rh-ee-cparada
