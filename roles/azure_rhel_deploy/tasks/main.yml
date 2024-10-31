@@ -55,7 +55,7 @@
     allocation_method: "{{ item.method }}"
     state: present
   loop: "{{ pip }}"
-  #register: pip
+  register: pip_out
 
 # - name: Public IP of VM
 #   debug:
@@ -103,4 +103,4 @@
     port: 22
     timeout: 300
     delay: 10
-  loop: "{{ pip }}"
+  loop: "{{ pip_out }}"
