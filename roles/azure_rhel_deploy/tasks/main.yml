@@ -96,9 +96,6 @@
   loop: "{{ vm }}"
   #register: vm
 
-- debug:
-    var: pip_out
-
 - name: Wait for port 22 to become open
   connection: local
   wait_for:
