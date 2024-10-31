@@ -82,7 +82,7 @@ vm:
     admin_username: adminuser
     admin_password: RHELpass_123
     # Flavour 
-    flavor_name: Standard_D2s_v3
+    flavor: Standard_D2s_v3
     # Disk
     # disk_size: 20
     # ebs_name: /dev/sda1

@@ -3,7 +3,7 @@
 # User RHPDS AAP Open Environment
 # https://learn.microsoft.com/en-us/azure/developer/ansible/vm-configure?tabs=ansible
 
-- name: Create Resource Group {{ item.name }}
+- name: Create Resource Group {{ rg }}
   azure.azcollection.azure_rm_resourcegroup:
     name: "{{ item.name }}"
     location: "{{ item.location }}"
@@ -11,7 +11,7 @@
   loop: "{{ rg }}"
   #register: rg
 
-- name: Create Vnet {{ item.name }}
+- name: Create Vnet {{ vnet }}
   azure.azcollection.azure_rm_virtualnetwork:
     name: "{{ item.name }}"
     resource_group: "{{ item.rg }}"
@@ -21,7 +21,7 @@
   loop: "{{ vnet }}"
   #register: vnet
 
-- name: Create Subnet {{ item.name }}
+- name: Create Subnet {{ subnet }}
   azure.azcollection.azure_rm_subnet:
     name: "{{ item.name }}"
     resource_group: "{{ item.rg }}"
@@ -32,7 +32,7 @@
   loop: "{{ subnet }}"
   #register: subnet
 
-- name: Create Security Group {{ item.name }}
+- name: Create Security Group {{ sg }}
   azure.azcollection.azure_rm_securitygroup:
     name: "{{ item.name }}"
     resource_group: "{{ item.rg }}"
@@ -48,7 +48,7 @@
   loop: "{{ sg }}"
   #register: sg
 
-- name: Create Public IP {{ item.name }}
+- name: Create Public IP {{ pip }}
   azure.azcollection.azure_rm_publicipaddress:
     name: "{{ item.name }}"
     resource_group: "{{ item.rg }}"
@@ -61,7 +61,7 @@
 #   debug:
 #     msg: "The public IP is {{ pip.state.ip_address }}"
 
-- name: Create Network Interface {{ item.name }}
+- name: Create Network Interface {{ interface }}
   azure.azcollection.azure_rm_networkinterface:
     name: "{{ item.name }}"
     resource_group: "{{ item.rg }}"
@@ -76,7 +76,7 @@
   loop: "{{ interface }}"
   #register: interface
 
-- name: Create RHEL VM {{ item.name }}
+- name: Create RHEL VM {{ vm }}
   azure.azcollection.azure_rm_virtualmachine:
     name: "{{ item.name }}"
     resource_group: "{{ item.rg }}"
