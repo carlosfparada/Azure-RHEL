@@ -80,20 +80,23 @@
   azure.azcollection.azure_rm_virtualmachine:
     name: "{{ item.name }}"
     resource_group: "{{ item.rg }}"
-    virtual_network_name: "{{ item.vnet }}"
-    subnet_name: "{{ item.subnet }}"
+    #virtual_network_name: "{{ item.vnet }}"
+    #subnet_name: "{{ item.subnet }}"
     vm_size: "{{ item.flavor }}"
     admin_username: "{{ item.admin_username }}"
     admin_password: "{{ item.admin_password }}"
     ssh_password_enabled: "{{ item.password_enabled }}"
     network_interface_names: "{{ item.interface }}"
-    os_type: "{{ item.os_type }}"
+    #os_type: "{{ item.os_type }}"
     ssh_public_keys:
       - path: "/home/{{ item.admin_username }}/.ssh/authorized_keys"
         key_data: "{{ item.public_key }}"
     image: "{{ item.image }}"
+    managed_disk_type: "Standard_LRS"
     started: "{{ item.started }}"
     state: present
+    tags:
+      "name": "{{ item.name }}"
   loop: "{{ vm }}"
   #register: vm
 
