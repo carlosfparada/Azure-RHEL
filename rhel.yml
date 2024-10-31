@@ -1,6 +1,7 @@
 - name: Azure RHEL Service Config roles
   hosts: all
   connection: local
+  become: true
   vars_files: vars/main.yml
   roles:
     - rhel_service_config
