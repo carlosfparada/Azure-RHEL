@@ -17,4 +17,4 @@ packages:
   - httpd
   - php 
   - php-common
-port: http/tcp
+openport: http/tcp
