@@ -6,14 +6,13 @@
 - name: Return motd to registered var
   ansible.builtin.command: cat /etc/motd
   register: mymotd
-  
-- name: Attach Red Hat subscription
-  community.general.redhat_subscription:
-    state: present
-    username: rh-ee-cparada
-    password: "{{ subscription_pass }}"
-    pool_ids: "{{ rh_subs_pool_id }}"
-    release: 8.7
+
+# - name: Attach Red Hat subscription
+#   community.general.redhat_subscription:
+#     state: present
+#     username: rh-ee-cparada
+#     password: "{{ subscription_pass }}"
+#     pool_ids: "{{ rh_subs_pool_id }}"
 
 - name: Install Software
   ansible.builtin.dnf:
