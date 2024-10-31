@@ -76,7 +76,7 @@
   loop: "{{ interface }}"
   #register: interface
 
-- name: Create RHEL VM {{ vm }}
+- name: Create RHEL VM
   azure.azcollection.azure_rm_virtualmachine:
     name: "{{ item.name }}"
     resource_group: "{{ item.rg }}"
