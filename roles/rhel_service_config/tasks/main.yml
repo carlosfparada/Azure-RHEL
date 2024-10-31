@@ -6,6 +6,7 @@
 - name: Return motd to registered var
   ansible.builtin.command: whereis subscription-manager
   register: ans
+  become: true
 
 - name: Attach Red Hat subscription
   community.general.redhat_subscription:
