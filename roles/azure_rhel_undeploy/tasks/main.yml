@@ -55,7 +55,7 @@
 
 - name: Delete Resource Group {{ rg }} and all inner resources
   azure.azcollection.azure_rm_resourcegroup:
-    name: "{{ item.rg }}"
+    name: "{{ item.name }}"
     force_delete_nonempty: yes
     state: absent
   loop: "{{ rg }}"
