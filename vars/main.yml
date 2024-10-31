@@ -68,8 +68,8 @@ vm:
       sku: 9-LVM
       version: latest
     # auth
-    admin_username: adminuser
-    admin_password: RHELpass_123
+    admin_username: azureuser
+    #admin_password: RHELpass_123
     # Flavour 
     flavor: Standard_D2s_v3
     # Disk
