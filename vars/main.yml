@@ -90,8 +90,8 @@ vm:
 rhel_vm: rhel-1
 rh_subs_pool_id: 8a85f99c7d76f2fd017d96c343f40655
 packages:
-  - firewalld
   - httpd
-  - php 
-  - php-common
+  # - firewalld
+  # - php 
+  # - php-common
 openport: http/tcp
