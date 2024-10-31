@@ -53,7 +53,7 @@
   loop: "{{ vnet }}"
   #register: vnet
 
-- name: Delete Resource Group {{ rg }} and all inner resources
+- name: Delete Resource Group and all inner resources
   azure.azcollection.azure_rm_resourcegroup:
     name: "{{ item.name }}"
     force_delete_nonempty: yes
