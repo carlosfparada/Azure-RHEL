@@ -83,7 +83,7 @@
     virtual_network_name: "{{ item.vnet }}"
     subnet_name: "{{ item.subnet }}"
     vm_size: "{{ item.flavor }}"
-    # admin_username: "{{ item.admin_username }}"
+    admin_username: "{{ item.admin_username }}"
     # admin_password: "{{ item.admin_password }}"
     network_interface_names: "{{ item.interface }}"
     os_type: "{{ item.os_type }}"
