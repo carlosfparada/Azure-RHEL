@@ -23,8 +23,8 @@
 
 - name: Delete Public IP {{ pip }}
   azure.azcollection.azure_rm_publicipaddress:
-    name: "{{ pip.name }}"
-    resource_group: "{{ pip.rg }}"
+    name: "{{ item.name }}"
+    resource_group: "{{ item.rg }}"
     state: absent
   loop: "{{ pip }}"
 
