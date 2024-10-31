@@ -85,6 +85,7 @@
     vm_size: "{{ item.flavor }}"
     admin_username: "{{ item.admin_username }}"
     # admin_password: "{{ item.admin_password }}"
+    ssh_password_enabled: false
     network_interface_names: "{{ item.interface }}"
     os_type: "{{ item.os_type }}"
     ssh_public_keys:
