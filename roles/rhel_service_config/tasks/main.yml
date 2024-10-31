@@ -48,3 +48,12 @@
     state: restarted
   become: yes
  
+ - name: Detach Red Hat subscription
+  community.general.redhat_subscription:
+    state: absent
+    username: rh-ee-cparada
+    password: "{{ subscription_pass }}"
+    #token: "{{ token }}"
+    #auto_attach: true
+    pool_ids: "{{ rh_subs_pool_id }}"
+  become: yes
