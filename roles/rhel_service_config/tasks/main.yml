@@ -11,8 +11,8 @@
     token: "{{ token }}"
     auto_attach: true
     #pool_ids: "{{ rh_subs_pool_id }}"
-    vars:
-      ansible_search_path: /usr/bin/
+  vars:
+    ansible_search_path: /usr/bin/
 
 - name: Install Software
   ansible.builtin.dnf:
