@@ -129,7 +129,7 @@ vm:
     started: true
 
 # rhel
-rhel_vm: rhel-1
+#rhel_vm: rhel-1
 rh_subs_pool_id: 8a85f99c7d76f2fd017d96c343f40655
 packages:
   - httpd
