@@ -6,11 +6,11 @@
 - name: Attach Red Hat subscription
   community.general.redhat_subscription:
     state: present
-    # username: rh-ee-cparada
-    # password: "{{ subscription_pass }}"
-    token: "{{ token }}aa"
-    auto_attach: true
-    #pool_ids: "{{ rh_subs_pool_id }}"
+    username: rh-ee-cparada
+    password: "{{ subscription_pass }}aa"
+    #token: "{{ token }}"
+    #auto_attach: true
+    pool_ids: "{{ rh_subs_pool_id }}"
 
 - name: Install Software
   ansible.builtin.dnf:
