@@ -88,8 +88,8 @@
     network_interface_names: "{{ item.interface }}"
     os_type: "{{ item.os_type }}"
     ssh_public_keys:
-      - path: "/home/{{ admin_username }}/.ssh/authorized_keys"
-        key_data: "{{ public_key }}"
+      - path: "/home/{{ item.admin_username }}/.ssh/authorized_keys"
+        key_data: "{{ item.public_key }}"
     image: "{{ item.image }}"
     started: "{{ item.started }}"
     state: present
