@@ -8,7 +8,7 @@
     state: present
     username: rh-ee-cparada
     password: "{{ subscription_pass }}"
-    auto-attach: true #pool_ids: "{{ rh_subs_pool_id }}"
+    auto_attach: true #pool_ids: "{{ rh_subs_pool_id }}"
 
 - name: Install Software
   ansible.builtin.dnf:
