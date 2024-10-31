@@ -17,6 +17,10 @@
     name: "{{ packages }}"
     state: present
   become: yes
+  register: install
+  until: "install is not failed"
+  retries: 4
+  delay: 10
 
 - name: Open port TCP
   ansible.posix.firewalld:
