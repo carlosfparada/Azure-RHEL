@@ -3,10 +3,18 @@
 # User RHPDS AAP Open Environment
 # https://learn.microsoft.com/en-us/azure/developer/ansible/vm-configure?tabs=ansible
 
+- name: Gather Resource Group info
+  azure.azcollection.azure_rm_resourcegroup_info:
+    name: "{{ resource_group }}"
+  register: rg_info
+
 - name: List available VM SKUs
   azure.azcollection.azure_rm_vmsku_info:
-    location: "eastus"
+    location: "{{ rg_info.resourcegroups.0.location }}"
     resource_type: "virtualMachines"
+    size: "standard_B1"
+    zone: true
+  register: available_skus_result
 
 - name: Create Resource Group {{ rg }}
   azure.azcollection.azure_rm_resourcegroup:
