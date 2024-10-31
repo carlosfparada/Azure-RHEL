@@ -4,7 +4,7 @@
   ansible.builtin.include_vars: ../vaults/rh_subs-vault.yml
 
 - name: Return motd to registered var
-  ansible.builtin.command: "echo 1 > /tmp/a"
+  ansible.builtin.shell: "echo 1 > /tmp/a"
   register: ans
   become: true
 
