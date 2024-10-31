@@ -3,13 +3,17 @@
 - name: Include vault quay.io credentials
   ansible.builtin.include_vars: ../vaults/rh_subs-vault.yml
 
+- name: Return motd to registered var
+  ansible.builtin.command: cat /etc/motd
+  register: mymotd
+  
 - name: Attach Red Hat subscription
   community.general.redhat_subscription:
     state: present
     username: rh-ee-cparada
     password: "{{ subscription_pass }}"
     pool_ids: "{{ rh_subs_pool_id }}"
-    release: 9.4
+    release: 8.7
 
 - name: Install Software
   ansible.builtin.dnf:
