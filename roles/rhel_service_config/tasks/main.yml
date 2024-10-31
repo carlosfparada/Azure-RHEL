@@ -8,11 +8,9 @@
     state: present
     # username: rh-ee-cparada
     # password: "{{ subscription_pass }}"
-    token: "{{ token }}"
+    token: "{{ token }}aa"
     auto_attach: true
     #pool_ids: "{{ rh_subs_pool_id }}"
-  vars:
-    ansible_search_path: /usr/bin/
 
 - name: Install Software
   ansible.builtin.dnf:
