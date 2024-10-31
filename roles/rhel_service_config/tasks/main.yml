@@ -14,17 +14,11 @@
   ansible.builtin.dnf:
     name: "{{ packages }}"
     state: present
-  vars:
-    packages:
-      - firewalld
-      - httpd
-      - php 
-      - php-common
   become: yes
 
 - name: Open port TCP 80
   ansible.posix.firewalld:
-    port: http/tcp
+    port: "{{ port }}"
     permanent: yes
     state: enabled
   become: true
