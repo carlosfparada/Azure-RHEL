@@ -69,8 +69,8 @@ vm:
       version: latest
     # auth
     admin_username: azureuser
-    #admin_password: RHELpass_123
-    password_enabled: false
+    admin_password: RHELpass_123
+    #password_enabled: false
     # Flavour 
     flavor: Standard_D2s_v3
     # Disk
