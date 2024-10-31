@@ -5,7 +5,7 @@
 
 - name: Gather Resource Group info
   azure.azcollection.azure_rm_resourcegroup_info:
-    name: "{{ resource_group }}"
+    name: "cparada-rhel"
   register: rg_info
 
 - name: List available VM SKUs
