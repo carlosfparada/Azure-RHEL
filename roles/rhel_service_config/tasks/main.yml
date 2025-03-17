@@ -1,7 +1,7 @@
 ---
 
-- name: Include vault credentials
-  ansible.builtin.include_vars: ../vaults/rh_subs-vault.yml
+# - name: Include vault credentials
+#   ansible.builtin.include_vars: ../vaults/rh_subs-vault.yml
 
 - name: Attach Red Hat subscription
   community.general.redhat_subscription:
@@ -51,7 +51,7 @@
 - name: Detach Red Hat subscription
   community.general.redhat_subscription:
     state: absent
-    username: rh-ee-cparada
+    username: "{{ subscription_user }}"
     password: "{{ subscription_pass }}"
     #token: "{{ token }}"
     #auto_attach: true
