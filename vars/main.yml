@@ -82,8 +82,8 @@ vm:
     #   sku: '8_5'
     #   version: latest
     # auth
-    admin_username: azureuser
-    admin_password: RHELpass_123
+    admin_username: "{{ ansible_user }}"
+    admin_password: "{{ ansible_password }}"
     password_enabled: true
     # Flavour 
     flavor: Standard_D2s_v3
@@ -115,8 +115,8 @@ vm:
     #   sku: '8_5'
     #   version: latest
     # auth
-    admin_username: azureuser
-    admin_password: RHELpass_123
+    admin_username: "{{ ansible_user }}"
+    admin_password: "{{ ansible_password }}"
     password_enabled: true
     # Flavour 
     flavor: Standard_D2s_v3
