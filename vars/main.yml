@@ -83,7 +83,7 @@ vm:
     #   version: latest
     # auth
     admin_username: "{{ ansible_user | default('azureuser') }}" 
-    admin_password: "{{ ansible_password }}"
+    admin_password: "{{ ansible_password | default('Admin123$%&') }}"
     password_enabled: true
     # Flavour 
     flavor: Standard_D2s_v3
@@ -116,7 +116,7 @@ vm:
     #   version: latest
     # auth
     admin_username: "{{ ansible_user | default('azureuser') }}" 
-    admin_password: "{{ ansible_password }}"
+    admin_password: "{{ ansible_password | default('Admin123$%&') }}"
     password_enabled: true
     # Flavour 
     flavor: Standard_D2s_v3
