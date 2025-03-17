@@ -82,8 +82,6 @@ vm:
     #   sku: '8_5'
     #   version: latest
     # auth
-    admin_username: "{{ ansible_user | default('azureuser') }}" 
-    admin_password: "{{ ansible_password | default('Admin123$%&') }}"
     password_enabled: true
     # Flavour 
     flavor: Standard_D2s_v3
@@ -115,8 +113,6 @@ vm:
     #   sku: '8_5'
     #   version: latest
     # auth
-    admin_username: "{{ ansible_user | default('azureuser') }}" 
-    admin_password: "{{ ansible_password | default('Admin123$%&') }}"
     password_enabled: true
     # Flavour 
     flavor: Standard_D2s_v3
@@ -130,6 +126,8 @@ vm:
 
 # rhel
 #rhel_vm: rhel-1
+admin_username: "{{ ansible_user | default('azureuser') }}" 
+admin_password: "{{ ansible_password }}"
 rh_subs_pool_id: 8a85f99c7d76f2fd017d96c343f40655
 packages:
   - httpd
